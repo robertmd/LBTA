@@ -1,24 +1,26 @@
+<!doctype html>
 <html>
-<head>
-  <script
-  src="https://code.jquery.com/jquery-3.1.1.min.js"
-  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-  crossorigin="anonymous"></script>
-</head>
-<body>
-  <input type="text" id="sleepTime" name="fname">
-  <button type="button" id="dostuff">Do request Stuff!</button>
-<script>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <input type="text" id="sleepTime" name="fname">
+    <button id="dostuff">Do request Stuff!</button>
+    <div class="times"></div>
 
-$( "#dostuff" ).click(function() {
-  var start_time = new Date().getTime();
-  jQuery.get('http://localhost:8080/?sleep=' + $('#sleepTime').val(), null, null
-  ).always(function() {
-      var request_time = new Date().getTime() - start_time;
-      $( ".times" ).append( request_time + "<br>" );
-  });
-});
-</script>
-<div class="times"></div>
-</body>
+    <script>
+    $(function(){
+      $( "#dostuff" ).click(function(){
+        var start_time = new Date().getTime();
+        $.get('http://localhost:8080/?sleep=' + $('#sleepTime').val() )
+         .always(function(){
+            var request_time = new Date().getTime() - start_time;
+            $( ".times" ).append( request_time + "<br>" );
+        });
+      });
+    });
+    </script>
+  </body>
 </html>
